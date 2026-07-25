@@ -16,7 +16,7 @@ class CashualApplication extends StatelessWidget {
     return CupertinoApp.router(
       debugShowCheckedModeBanner: false,
       theme: CupertinoThemeData(
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         textTheme: CupertinoTextThemeData(
           textStyle: TextStyle(
             fontFamily: "Rubik",
@@ -26,7 +26,7 @@ class CashualApplication extends StatelessWidget {
         ),
       ),
       builder: (context, child) =>
-          CashTheme(mode: CashThemeMode.light, child: child!),
+          CashTheme(mode: CashThemeMode.dark, child: child!),
       routerConfig: createRouter(),
     );
   }

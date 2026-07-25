@@ -18,12 +18,12 @@ class CashThemeData {
   bool get isDark => brightness == Brightness.dark;
 
   static const CashThemeData light = CashThemeData(
-    colorScheme: Colors.light,
+    colorScheme: CashColors.light,
     brightness: Brightness.light,
   );
 
   static const CashThemeData dark = CashThemeData(
-    colorScheme: Colors.dark,
+    colorScheme: CashColors.dark,
     brightness: Brightness.dark,
   );
 

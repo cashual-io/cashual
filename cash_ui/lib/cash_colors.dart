@@ -170,8 +170,8 @@ class CashColorScheme {
   }
 }
 
-class Colors {
-  Colors._();
+class CashColors {
+  CashColors._();
 
   static const CashColorScheme light = CashColorScheme(
     background: Color(0xFFF5F5F5),

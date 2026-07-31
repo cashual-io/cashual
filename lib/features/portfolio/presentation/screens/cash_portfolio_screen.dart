@@ -12,6 +12,7 @@ import 'package:cashual/features/asset/widgets/cash_asset_list_item.dart';
 import 'package:cashual/features/portfolio/presentation/widgets/cash_portfolio_header.dart';
 import 'package:cashual/features/portfolio/presentation/widgets/cash_portfolio_profiles_card.dart';
 import 'package:cashual/features/qrcode/presentation/widgets/qrcode_hero_shuttle.dart';
+import 'package:cashual/features/send/presentation/widgets/cash_send_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/physics.dart';
 import 'package:go_router/go_router.dart';
@@ -83,7 +84,7 @@ class _CashPortfolioScreenState extends State<CashPortfolioScreen>
           children: [
             CashText(
               "112,832",
-              size: CashFontSize.xxxxl,
+              size: CashFontSize.xxxxxl,
               weight: FontWeight.w400,
               height: 1.0,
             ),
@@ -91,6 +92,7 @@ class _CashPortfolioScreenState extends State<CashPortfolioScreen>
             Icon(
               CupertinoIcons.bolt_circle_fill,
               color: CashColors.light.warning,
+              size: 26,
             ),
           ],
         ),
@@ -145,7 +147,13 @@ class _CashPortfolioScreenState extends State<CashPortfolioScreen>
                     CupertinoIcons.paperplane_fill,
                     size: 16,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    showCashModalPopup(
+                      context: context,
+                      title: "Send asset",
+                      child: const CashSendCard(),
+                    );
+                  },
                 ),
               ),
               const SizedBox(width: 8),

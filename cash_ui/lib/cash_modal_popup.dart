@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'cash_close_button.dart';
 import 'cash_surface.dart';
-import 'cash_tappable.dart';
 import 'cash_text.dart';
-import 'cash_theme.dart';
 import 'cash_tokens.dart';
 
 Future<T?> showCashModalPopup<T>({
@@ -98,7 +97,6 @@ class CashModalSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = CashTheme.schemeOf(context);
     final maxHeight = MediaQuery.sizeOf(context).height * 0.75;
 
     return CashSurface(
@@ -121,14 +119,7 @@ class CashModalSheet extends StatelessWidget {
                   size: CashFontSize.xl,
                   weight: CashFontWeight.medium,
                 ),
-                CashTappable(
-                  onTap: onClose,
-                  child: Icon(
-                    CupertinoIcons.xmark_circle_fill,
-                    size: 28,
-                    color: scheme.muted,
-                  ),
-                ),
+                CashCloseButton(onTap: onClose),
               ],
             ),
             SizedBox(height: 18),

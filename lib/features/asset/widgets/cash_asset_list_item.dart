@@ -7,9 +7,23 @@ import 'package:cash_ui/cash_tokens.dart';
 import 'package:flutter/cupertino.dart';
 
 class CashAssetListItem extends StatelessWidget {
-  const CashAssetListItem({super.key, this.isLoading = false});
+  const CashAssetListItem({
+    super.key,
+    this.isLoading = false,
+    this.name = "Bitcoin",
+    this.symbol = "BTC",
+    this.amount = "89.020003",
+    this.price = "\$8,282.11",
+    this.imageUrl =
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/3840px-Bitcoin.svg.png",
+  });
 
   final bool isLoading;
+  final String name;
+  final String symbol;
+  final String amount;
+  final String price;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +55,7 @@ class CashAssetListItem extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                         alignment: Alignment.center,
-                        child: Image.network(
-                          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/3840px-Bitcoin.svg.png",
-                        ),
+                        child: Image.network(imageUrl),
                       ),
                       if (isLoading)
                         Positioned(
@@ -67,14 +79,14 @@ class CashAssetListItem extends StatelessWidget {
                 Column(
                   crossAxisAlignment: .start,
                   children: [
-                    CashText("Bitcoin", size: CashFontSize.lg),
+                    CashText(name, size: CashFontSize.lg),
                     SizedBox(height: 2),
-                    CashText("89.020003 BTC", color: scheme.muted),
+                    CashText("$amount $symbol", color: scheme.muted),
                   ],
                 ),
               ],
             ),
-            Column(children: [CashText("\$8,282.11", size: CashFontSize.lg)]),
+            Column(children: [CashText(price, size: CashFontSize.lg)]),
           ],
         ),
       ),

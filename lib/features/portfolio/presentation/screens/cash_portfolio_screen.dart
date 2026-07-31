@@ -193,158 +193,153 @@ class _CashPortfolioScreenState extends State<CashPortfolioScreen>
   Widget build(BuildContext context) {
     final scheme = CashTheme.schemeOf(context);
 
-    return CupertinoPageScaffold(
-      backgroundColor: scheme.background,
-      child: SafeArea(
-        child: Padding(
-          padding: EdgeInsetsGeometry.all(16),
-          child: Column(
-            crossAxisAlignment: .start,
-            children: [
-              CashPortfolioHeader(
-                imageUrl: "https://api.dicebear.com/10.x/glyphs/png?seed=Felix",
-                portfolioName: "Savings",
-                onPortfolioTap: () {
-                  showCashModalPopup(
-                    context: context,
-                    title: "Profiles",
-                    actions: [
-                      CashButton(
-                        isFullWidth: true,
-                        variant: .secondary,
-                        label: "Manage profiles",
-                        size: .lg,
-                        startContent: Icon(
-                          CupertinoIcons.rectangle_stack_fill,
-                          size: 18,
-                        ),
-                        onPressed: () {},
+    return SafeArea(
+      bottom: false,
+      child: SingleChildScrollView(
+        padding: EdgeInsetsGeometry.all(16),
+        child: Column(
+          crossAxisAlignment: .start,
+          children: [
+            CashPortfolioHeader(
+              imageUrl: "https://api.dicebear.com/10.x/glyphs/png?seed=Felix",
+              portfolioName: "Savings",
+              onPortfolioTap: () {
+                showCashModalPopup(
+                  context: context,
+                  title: "Profiles",
+                  actions: [
+                    CashButton(
+                      isFullWidth: true,
+                      variant: .secondary,
+                      label: "Manage profiles",
+                      size: .lg,
+                      startContent: Icon(
+                        CupertinoIcons.rectangle_stack_fill,
+                        size: 18,
                       ),
-                    ],
-                    child: const CashPortfolioProfilesCard(),
-                  );
-                },
-                trailing: CashButton(
-                  isIconOnly: true,
-                  size: CashSize.md,
-                  variant: .tertiary,
-                  startContent: const Icon(CupertinoIcons.bell_fill, size: 20),
-                  onPressed: () {},
-                ),
+                      onPressed: () {},
+                    ),
+                  ],
+                  child: const CashPortfolioProfilesCard(),
+                );
+              },
+              trailing: CashButton(
+                isIconOnly: true,
+                size: CashSize.md,
+                variant: .tertiary,
+                startContent: const Icon(CupertinoIcons.bell_fill, size: 20),
+                onPressed: () {},
               ),
-              const SizedBox(height: 16),
-              _buildBalanceSection(scheme),
-              SizedBox(height: 16),
-              IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: .stretch,
-                  children: [
-                    SizedBox(
-                      width: 128,
-                      child: CashTappable(
-                        onTap: () {},
-                        child: CashSurface(
-                          bordered: false,
-                          width: double.infinity,
-                          padding: EdgeInsets.all(16),
-                          radius: CashRadius.xxl,
-                          child: Placeholder(),
-                        ),
+            ),
+            const SizedBox(height: 16),
+            _buildBalanceSection(scheme),
+            SizedBox(height: 16),
+            IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: .stretch,
+                children: [
+                  SizedBox(
+                    width: 128,
+                    child: CashTappable(
+                      onTap: () {},
+                      child: CashSurface(
+                        bordered: false,
+                        width: double.infinity,
+                        padding: EdgeInsets.all(16),
+                        radius: CashRadius.xxl,
+                        child: Placeholder(),
                       ),
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: CashTappable(
-                        onTap: () {},
-                        child: CashSurface(
-                          bordered: false,
-                          width: double.infinity,
-                          radius: CashRadius.xxl,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 18,
-                            vertical: 16,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: .start,
-                            children: [
-                              CashText(
-                                "Transactions:",
-                                weight: FontWeight.w500,
-                              ),
-                              SizedBox(height: 12),
-                              CashFadeEdge(
-                                axis: Axis.horizontal,
-                                fadeStart: false,
-                                child: SizedBox(
-                                  height: 48,
-                                  child: Stack(
-                                    children: [
-                                      for (final (index, seed) in [
-                                        "Felix22231",
-                                        "aasFelix22236",
-                                        "aasFelix11131",
-                                        "test2",
-                                        "uuuuu",
-                                      ].indexed)
-                                        Positioned(
-                                          left: index * 32.0,
-                                          child: Container(
-                                            padding: const EdgeInsets.all(2),
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: scheme.surface,
-                                            ),
-                                            child: ClipOval(
-                                              child: Image.network(
-                                                "https://api.dicebear.com/10.x/dylan/png?seed=$seed",
-                                                width: 44,
-                                                height: 44,
-                                                fit: BoxFit.cover,
-                                              ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: CashTappable(
+                      onTap: () {},
+                      child: CashSurface(
+                        bordered: false,
+                        width: double.infinity,
+                        radius: CashRadius.xxl,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 16,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: .start,
+                          children: [
+                            CashText("Transactions:", weight: FontWeight.w500),
+                            SizedBox(height: 12),
+                            CashFadeEdge(
+                              axis: Axis.horizontal,
+                              fadeStart: false,
+                              child: SizedBox(
+                                height: 48,
+                                child: Stack(
+                                  children: [
+                                    for (final (index, seed) in [
+                                      "Felix22231",
+                                      "aasFelix22236",
+                                      "aasFelix11131",
+                                      "test2",
+                                      "uuuuu",
+                                    ].indexed)
+                                      Positioned(
+                                        left: index * 32.0,
+                                        child: Container(
+                                          padding: const EdgeInsets.all(2),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: scheme.surface,
+                                          ),
+                                          child: ClipOval(
+                                            child: Image.network(
+                                              "https://api.dicebear.com/10.x/dylan/png?seed=$seed",
+                                              width: 44,
+                                              height: 44,
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),
-                                    ],
-                                  ),
+                                      ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 12),
-              Row(
-                crossAxisAlignment: .center,
-                mainAxisAlignment: .spaceBetween,
-                children: [
-                  CashText(
-                    "Assets",
-                    weight: FontWeight.w500,
-                    size: CashFontSize.xl,
-                  ),
-                  CashButton(
-                    isIconOnly: true,
-                    size: CashSize.md,
-                    variant: .tertiary,
-                    startContent: Icon(
-                      CupertinoIcons.slider_horizontal_3,
-                      size: 20,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 14),
-              CashAssetListItem(),
-              SizedBox(height: 6),
-              CashAssetListItem(),
-              SizedBox(height: 6),
-              CashAssetListItem(isLoading: true),
-            ],
-          ),
+            ),
+            SizedBox(height: 12),
+            Row(
+              crossAxisAlignment: .center,
+              mainAxisAlignment: .spaceBetween,
+              children: [
+                CashText(
+                  "Assets",
+                  weight: FontWeight.w500,
+                  size: CashFontSize.xl,
+                ),
+                CashButton(
+                  isIconOnly: true,
+                  size: CashSize.md,
+                  variant: .tertiary,
+                  startContent: Icon(
+                    CupertinoIcons.slider_horizontal_3,
+                    size: 20,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 14),
+            CashAssetListItem(),
+            SizedBox(height: 6),
+            CashAssetListItem(),
+            SizedBox(height: 6),
+            CashAssetListItem(isLoading: true),
+          ],
         ),
       ),
     );

@@ -29,7 +29,7 @@ class CashSendCard extends StatelessWidget {
         ),
         SizedBox(height: 16),
         CashText(
-          "Address book:",
+          "Contacts:",
           size: CashFontSize.lg,
           weight: CashFontWeight.medium,
         ),

@@ -14,13 +14,20 @@ Future<T?> showCashModalPopup<T>({
   return showCupertinoModalPopup<T>(
     context: context,
     builder: (context) {
-      return _DraggableDismissible(
-        onDismiss: onClose ?? () => Navigator.of(context).pop(),
-        child: CashModalSheet(
-          title: title,
-          onClose: onClose ?? () => Navigator.of(context).pop(),
-          actions: actions,
-          child: child,
+      return AnimatedPadding(
+        duration: const Duration(milliseconds: 180),
+        curve: Curves.easeOut,
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.viewInsetsOf(context).bottom,
+        ),
+        child: _DraggableDismissible(
+          onDismiss: onClose ?? () => Navigator.of(context).pop(),
+          child: CashModalSheet(
+            title: title,
+            onClose: onClose ?? () => Navigator.of(context).pop(),
+            actions: actions,
+            child: child,
+          ),
         ),
       );
     },
@@ -97,7 +104,9 @@ class CashModalSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxHeight = MediaQuery.sizeOf(context).height * 0.75;
+    final maxHeight =
+        MediaQuery.sizeOf(context).height * 0.75 -
+        MediaQuery.viewInsetsOf(context).bottom;
 
     return CashSurface(
       width: double.infinity,

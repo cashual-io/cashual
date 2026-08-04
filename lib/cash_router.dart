@@ -2,17 +2,25 @@ import 'package:cash_ui/cash_page_transitions.dart';
 import 'package:cashual/cash_main_layout.dart';
 import 'package:cashual/cash_shell_transition_container.dart';
 import 'package:cashual/features/asset/presentation/screens/cash_asset_screen.dart';
+import 'package:cashual/features/asset/presentation/screens/cash_select_asset_screen.dart';
 import 'package:cashual/features/contact/presentation/screens/cash_contacts_screen.dart';
 import 'package:cashual/features/portfolio/presentation/screens/cash_portfolio_screen.dart';
 import 'package:cashual/features/qrcode/presentation/screens/cash_qrcode_scan_screen.dart';
 import 'package:cashual/features/qrcode/presentation/widgets/qrcode_hero_shuttle.dart';
+import 'package:cashual/features/send/presentation/screens/cash_send_screen.dart';
 import 'package:cashual/features/settings/presentation/screens/cash_settings_screen.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter createRouter() {
   return GoRouter(
-    initialLocation: "/contacts",
+    initialLocation: "/portfolio",
     routes: [
+      GoRoute(
+        path: "/send",
+        name: "CashSendScreen",
+        builder: (context, state) => const CashSendScreen(),
+      ),
       StatefulShellRoute(
         builder: (context, state, navigationShell) =>
             CashMainLayout(navigationShell: navigationShell),
@@ -59,6 +67,20 @@ GoRouter createRouter() {
             ],
           ),
         ],
+      ),
+      GoRoute(
+        path: "/select-asset",
+        name: "CashSelectAssetScreen",
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const CashSelectAssetScreen(),
+          transitionDuration: const Duration(milliseconds: 300),
+          reverseTransitionDuration: const Duration(milliseconds: 300),
+          transitionsBuilder: heroCollapsingFadeTransitionsBuilder(
+            enterCurve: Curves.easeOut,
+            exitCurve: Curves.easeIn,
+          ),
+        ),
       ),
       GoRoute(
         path: "/qrcode-scan",

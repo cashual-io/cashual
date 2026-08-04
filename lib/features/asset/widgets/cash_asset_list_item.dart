@@ -16,6 +16,7 @@ class CashAssetListItem extends StatelessWidget {
     this.price = "\$8,282.11",
     this.imageUrl =
         "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/3840px-Bitcoin.svg.png",
+    this.onTap,
   });
 
   final bool isLoading;
@@ -24,13 +25,14 @@ class CashAssetListItem extends StatelessWidget {
   final String amount;
   final String price;
   final String imageUrl;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final scheme = CashTheme.schemeOf(context);
 
     return CashTappable(
-      onTap: () {},
+      onTap: onTap ?? () {},
       child: CashSurface(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         radius: CashRadius.xxl,

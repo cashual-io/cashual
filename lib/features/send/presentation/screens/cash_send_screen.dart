@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cash_ui/cash_button.dart';
 import 'package:cash_ui/cash_close_button.dart';
+import 'package:cash_ui/cash_modal_popup.dart';
 import 'package:cash_ui/cash_surface.dart';
 import 'package:cash_ui/cash_text.dart';
 import 'package:cash_ui/cash_theme.dart';
@@ -10,12 +11,11 @@ import 'package:cash_ui/cash_gravity_icons.dart';
 import 'package:cashual/features/asset/widgets/cash_asset_list_item.dart';
 import 'package:cashual/features/send/presentation/widgets/cash_send_amount_input.dart';
 import 'package:cashual/features/send/presentation/widgets/cash_send_background_pattern.dart';
+import 'package:cashual/features/send/presentation/widgets/cash_send_confirmation_card.dart';
 import 'package:cashual/features/send/presentation/widgets/cash_send_keyboard.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wheel_slider/wheel_slider.dart';
 
 class CashSendScreen extends StatefulWidget {
   const CashSendScreen({super.key});
@@ -189,7 +189,21 @@ class _CashSendScreenState extends State<CashSendScreen> {
                       ),
                       isFullWidth: true,
                       size: .lg,
-                      onPressed: () {},
+                      onPressed: () {
+                        showCashModalPopup(
+                          context: context,
+                          title: "Confirm",
+                          child: const CashSendConfirmationCard(),
+                          actions: [
+                            CashButton(
+                              label: "Send",
+                              isFullWidth: true,
+                              size: .lg,
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 ],

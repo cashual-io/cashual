@@ -1,6 +1,9 @@
 import 'package:flutter/widgets.dart';
+import 'cash_colors.dart';
 import 'cash_theme.dart';
 import 'cash_tokens.dart';
+
+enum CashSurfaceVariant { base, secondary, tertiary }
 
 class CashSurface extends StatelessWidget {
   const CashSurface({
@@ -8,6 +11,7 @@ class CashSurface extends StatelessWidget {
     this.child,
     this.padding,
     this.radius = CashRadius.lg,
+    this.variant = CashSurfaceVariant.base,
     this.color,
     this.bordered = true,
     this.borderColor,
@@ -20,6 +24,7 @@ class CashSurface extends StatelessWidget {
   final Widget? child;
   final EdgeInsetsGeometry? padding;
   final double radius;
+  final CashSurfaceVariant variant;
   final Color? color;
   final bool bordered;
   final Color? borderColor;
@@ -34,10 +39,19 @@ class CashSurface extends StatelessWidget {
     offset: Offset(0, 1),
   );
 
+  Color _resolveBackground(CashColorScheme scheme) {
+    if (color != null) return color!;
+    return switch (variant) {
+      CashSurfaceVariant.base => scheme.surface,
+      CashSurfaceVariant.secondary => scheme.surfaceSecondary,
+      CashSurfaceVariant.tertiary => scheme.surfaceTertiary,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     final scheme = CashTheme.schemeOf(context);
-    final bg = color ?? scheme.surface;
+    final bg = _resolveBackground(scheme);
     final border = bordered
         ? Border.all(color: borderColor ?? scheme.border, width: borderWidth)
         : null;

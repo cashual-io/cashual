@@ -7,6 +7,10 @@ class CashColorScheme {
     required this.foreground,
     required this.surface,
     required this.surfaceForeground,
+    required this.surfaceSecondary,
+    required this.surfaceSecondaryForeground,
+    required this.surfaceTertiary,
+    required this.surfaceTertiaryForeground,
     required this.overlay,
     required this.overlayForeground,
     required this.primary,
@@ -46,6 +50,12 @@ class CashColorScheme {
 
   final Color surface;
   final Color surfaceForeground;
+
+  final Color surfaceSecondary;
+  final Color surfaceSecondaryForeground;
+
+  final Color surfaceTertiary;
+  final Color surfaceTertiaryForeground;
 
   final Color overlay;
   final Color overlayForeground;
@@ -93,6 +103,10 @@ class CashColorScheme {
     Color? foreground,
     Color? surface,
     Color? surfaceForeground,
+    Color? surfaceSecondary,
+    Color? surfaceSecondaryForeground,
+    Color? surfaceTertiary,
+    Color? surfaceTertiaryForeground,
     Color? overlay,
     Color? overlayForeground,
     Color? primary,
@@ -131,6 +145,12 @@ class CashColorScheme {
       foreground: foreground ?? this.foreground,
       surface: surface ?? this.surface,
       surfaceForeground: surfaceForeground ?? this.surfaceForeground,
+      surfaceSecondary: surfaceSecondary ?? this.surfaceSecondary,
+      surfaceSecondaryForeground:
+          surfaceSecondaryForeground ?? this.surfaceSecondaryForeground,
+      surfaceTertiary: surfaceTertiary ?? this.surfaceTertiary,
+      surfaceTertiaryForeground:
+          surfaceTertiaryForeground ?? this.surfaceTertiaryForeground,
       overlay: overlay ?? this.overlay,
       overlayForeground: overlayForeground ?? this.overlayForeground,
       primary: primary ?? this.primary,
@@ -180,6 +200,12 @@ class CashColors {
     surface: Color(0xFFFFFFFF),
     surfaceForeground: Color(0xFF1C1C1F),
 
+    surfaceSecondary: Color(0xFFEFEFF0),
+    surfaceSecondaryForeground: Color(0xFF1C1C1F),
+
+    surfaceTertiary: Color(0xFFEAEAEB),
+    surfaceTertiaryForeground: Color(0xFF1C1C1F),
+
     overlay: Color(0xFFF4F4F5),
     overlayForeground: Color(0xFF1C1C1F),
 
@@ -228,6 +254,12 @@ class CashColors {
 
     surface: Color(0xFF1A1A1F),
     surfaceForeground: Color(0xFFF0F0F2),
+
+    surfaceSecondary: Color(0xFF232325),
+    surfaceSecondaryForeground: Color(0xFFF0F0F2),
+
+    surfaceTertiary: Color(0xFF262728),
+    surfaceTertiaryForeground: Color(0xFFF0F0F2),
 
     overlay: Color(0xFF27272A),
     overlayForeground: Color(0xFFF0F0F2),

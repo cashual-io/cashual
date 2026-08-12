@@ -88,6 +88,8 @@ class _DraggableDismissibleState extends State<_DraggableDismissible> {
   }
 }
 
+/// Uses [CashSurfaceVariant.base]; nest content in a [CashSurface] with
+/// `.secondary` or `.tertiary` to stay visible against this background.
 class CashModalSheet extends StatelessWidget {
   const CashModalSheet({
     super.key,
@@ -112,6 +114,7 @@ class CashModalSheet extends StatelessWidget {
       width: double.infinity,
       bordered: false,
       radius: CashRadius.xxl,
+      variant: CashSurfaceVariant.base,
       padding: const EdgeInsets.all(24),
       child: ConstrainedBox(
         constraints: BoxConstraints(maxHeight: maxHeight),

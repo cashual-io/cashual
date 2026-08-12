@@ -4,6 +4,7 @@ import 'cash_theme.dart';
 import 'cash_tokens.dart';
 import 'cash_tappable.dart';
 import 'cash_spinner.dart';
+import 'cash_vibration.dart';
 
 class CashButton extends StatefulWidget {
   const CashButton({
@@ -20,6 +21,8 @@ class CashButton extends StatefulWidget {
     this.isIconOnly = false,
     this.startContent,
     this.endContent,
+    this.vibrationLevel = CashVibrationLevel.light,
+    this.isVibrationEnabled = true,
   }) : assert(
          isIconOnly || label != null || child != null,
          'Provide label, child, or set isIconOnly.',
@@ -37,6 +40,8 @@ class CashButton extends StatefulWidget {
   final bool isIconOnly;
   final Widget? startContent;
   final Widget? endContent;
+  final CashVibrationLevel vibrationLevel;
+  final bool isVibrationEnabled;
 
   @override
   State<CashButton> createState() => _CashButtonState();
@@ -47,6 +52,13 @@ class _CashButtonState extends State<CashButton> {
 
   bool get _interactive =>
       !widget.isDisabled && !widget.isLoading && widget.onPressed != null;
+
+  void _handleTap() {
+    if (widget.isVibrationEnabled) {
+      triggerCashVibration(widget.vibrationLevel);
+    }
+    widget.onPressed?.call();
+  }
 
   _Style _resolve(CashColorScheme cs) {
     final h = _hovered && _interactive;
@@ -179,7 +191,7 @@ class _CashButtonState extends State<CashButton> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: CashTappable(
-        onTap: widget.onPressed,
+        onTap: _interactive ? _handleTap : null,
         isDisabled: !_interactive,
         cursor: _interactive
             ? SystemMouseCursors.click

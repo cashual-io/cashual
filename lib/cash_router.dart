@@ -7,19 +7,37 @@ import 'package:cashual/features/contact/presentation/screens/cash_contacts_scre
 import 'package:cashual/features/portfolio/presentation/screens/cash_portfolio_screen.dart';
 import 'package:cashual/features/qrcode/presentation/screens/cash_qrcode_scan_screen.dart';
 import 'package:cashual/features/qrcode/presentation/widgets/qrcode_hero_shuttle.dart';
+import 'package:cashual/features/restore_wallet/presentation/screens/cash_restore_seed_phrase_screen.dart';
+import 'package:cashual/features/restore_wallet/presentation/screens/cash_restore_wallet_screen.dart';
 import 'package:cashual/features/send/presentation/screens/cash_send_screen.dart';
 import 'package:cashual/features/settings/presentation/screens/cash_settings_screen.dart';
+import 'package:cashual/features/welcome/presentation/screens/cash_welcome_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter createRouter() {
   return GoRouter(
-    initialLocation: "/portfolio",
+    initialLocation: "/welcome",
     routes: [
+      GoRoute(
+        path: "/welcome",
+        name: "CashWelcomeScreen",
+        builder: (context, state) => const CashWelcomeScreen(),
+      ),
       GoRoute(
         path: "/send",
         name: "CashSendScreen",
         builder: (context, state) => const CashSendScreen(),
+      ),
+      GoRoute(
+        path: "/restore-wallet",
+        name: "CashRestoreWalletScreen",
+        builder: (context, state) => const CashRestoreWalletScreen(),
+      ),
+      GoRoute(
+        path: "/restore-wallet/seed-phrase",
+        name: "CashRestoreSeedPhraseScreen",
+        builder: (context, state) => const CashRestoreSeedPhraseScreen(),
       ),
       StatefulShellRoute(
         builder: (context, state, navigationShell) =>

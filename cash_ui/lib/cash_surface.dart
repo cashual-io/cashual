@@ -13,7 +13,7 @@ class CashSurface extends StatelessWidget {
     this.radius = CashRadius.lg,
     this.variant = CashSurfaceVariant.base,
     this.color,
-    this.bordered = true,
+    this.bordered = false,
     this.borderColor,
     this.borderWidth = 1.0,
     this.width,

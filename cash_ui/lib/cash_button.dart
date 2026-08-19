@@ -4,7 +4,7 @@ import 'cash_theme.dart';
 import 'cash_tokens.dart';
 import 'cash_tappable.dart';
 import 'cash_spinner.dart';
-import 'cash_vibration.dart';
+import 'cash_vibration.dart' show CashVibrationLevel;
 
 class CashButton extends StatefulWidget {
   const CashButton({
@@ -52,13 +52,6 @@ class _CashButtonState extends State<CashButton> {
 
   bool get _interactive =>
       !widget.isDisabled && !widget.isLoading && widget.onPressed != null;
-
-  void _handleTap() {
-    if (widget.isVibrationEnabled) {
-      triggerCashVibration(widget.vibrationLevel);
-    }
-    widget.onPressed?.call();
-  }
 
   _Style _resolve(CashColorScheme cs) {
     final h = _hovered && _interactive;
@@ -191,8 +184,10 @@ class _CashButtonState extends State<CashButton> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: CashTappable(
-        onTap: _interactive ? _handleTap : null,
+        onTap: widget.onPressed,
         isDisabled: !_interactive,
+        vibrationLevel: widget.vibrationLevel,
+        isVibrationEnabled: widget.isVibrationEnabled,
         cursor: _interactive
             ? SystemMouseCursors.click
             : SystemMouseCursors.forbidden,

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'cash_vibration.dart';
 
 class CashTappable extends StatefulWidget {
   const CashTappable({
@@ -10,6 +11,8 @@ class CashTappable extends StatefulWidget {
     this.duration = const Duration(milliseconds: 80),
     this.behavior = HitTestBehavior.opaque,
     this.cursor,
+    this.vibrationLevel = CashVibrationLevel.light,
+    this.isVibrationEnabled = true,
   });
 
   final Widget child;
@@ -19,6 +22,8 @@ class CashTappable extends StatefulWidget {
   final Duration duration;
   final HitTestBehavior behavior;
   final MouseCursor? cursor;
+  final CashVibrationLevel vibrationLevel;
+  final bool isVibrationEnabled;
 
   @override
   State<CashTappable> createState() => _CashTappableState();
@@ -64,6 +69,13 @@ class _CashTappableState extends State<CashTappable>
     if (_interactive) _controller.forward();
   }
 
+  void _handleTap() {
+    if (widget.isVibrationEnabled) {
+      triggerCashVibration(widget.vibrationLevel);
+    }
+    widget.onTap?.call();
+  }
+
   @override
   Widget build(BuildContext context) {
     final cursor =
@@ -84,7 +96,7 @@ class _CashTappableState extends State<CashTappable>
           }
         },
         child: GestureDetector(
-          onTap: _interactive ? widget.onTap : null,
+          onTap: _interactive ? _handleTap : null,
           behavior: widget.behavior,
           child: AnimatedBuilder(
             animation: _controller,
